@@ -28,40 +28,65 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  animated_splash_screen: ^1.3.0
+  firebase_core: ^2.24.2
   flutter:
     sdk: flutter
-
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
+  lottie: ^3.1.2
   cupertino_icons: ^1.0.6
+  audioplayers: ^6.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/Lottie/set.json
+    - assets/audio/background.mp3
+    - assets/images/splashscreen.png
+    - assets/images/3.png
+    - assets/images/2.png
+    - assets/images/top.jpg
+    - assets/images/settheory.png
+    - assets/images/settheory1.png
+    - assets/images/settheory2.png
+    - assets/images/settheory3.png
+    - assets/images/studyicon.png
+    - assets/images/quizicon.png
+    - assets/images/solveicon.png
+    - assets/images/progress.png
+    - assets/images/play.png
+    - assets/images/teacher.png
+    - assets/images/fruits.jpg
+    - assets/images/flowers.jpg
+    - assets/images/animals.jpg
+    - assets/images/apple.png
+    - assets/images/orange.png
+    - assets/images/strawberry.png
+    - assets/images/solution2.png
+    - assets/images/solution3.png
+    - assets/images/nullset.png
+    - assets/images/empty1.png
+    - assets/images/empty2.png
+    - assets/images/nullset1.png
+
+
+
+
+    
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
