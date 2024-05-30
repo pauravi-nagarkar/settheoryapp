@@ -294,7 +294,7 @@ class SetPage extends StatelessWidget {
           child: Column(
             children: [
               const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
+                padding: EdgeInsets.symmetric(vertical: 14.0),
                 child: Text(
                   "WHAT IS SET?",
                   style: TextStyle(
@@ -303,21 +303,21 @@ class SetPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Container(
-                  color: Colors.grey[300],
-                  height: 200,
-                  child: Center(
-                    child: Icon(
-                      Icons.play_circle_outline,
-                      color: Colors.red,
-                      size: 100,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
+              // Container(
+              //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              //   child: Container(
+              //     color: Colors.grey[300],
+              //     height: 200,
+              //     child: Center(
+              //       child: Icon(
+              //         Icons.play_circle_outline,
+              //         color: Colors.red,
+              //         size: 100,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              //const SizedBox(height: 0),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
                 child: Text(
@@ -329,7 +329,7 @@ class SetPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              //const SizedBox(height: 20),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -381,33 +381,33 @@ class SetPage extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Text(
-                      "A set of fruits: {apple,orange,strawberry}",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.black,
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      "A set of Numbers: {1,2,3}",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.black,
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      "A set of alphabets: {A,B,C,D,E,F,G}",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.black,
-                      ),
-                    ),
+                    //SizedBox(height: 10),
+                    // Text(
+                    //   "A set of fruits: {apple,orange,strawberry}",
+                    //   textAlign: TextAlign.center,
+                    //   style: TextStyle(
+                    //     fontSize: 30,
+                    //     color: Colors.black,
+                    //   ),
+                    // ),
+                    // SizedBox(height: 10),
+                    // Text(
+                    //   "A set of Numbers: {1,2,3}",
+                    //   textAlign: TextAlign.center,
+                    //   style: TextStyle(
+                    //     fontSize: 30,
+                    //     color: Colors.black,
+                    //   ),
+                    // ),
+                    // SizedBox(height: 10),
+                    // Text(
+                    //   "A set of alphabets: {A,B,C,D,E,F,G}",
+                    //   textAlign: TextAlign.center,
+                    //   style: TextStyle(
+                    //     fontSize: 30,
+                    //     color: Colors.black,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

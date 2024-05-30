@@ -97,8 +97,11 @@
 //   }
 // }
 import 'package:flutter/material.dart';
+import 'package:settheoryapp/universalset.dart';
 import 'set.dart';  // Import the SetPage widget
 import 'empty.dart';
+import 'subset.dart';
+import 'universalset.dart';
 
 class StudyPage extends StatelessWidget {
   const StudyPage({super.key});
@@ -185,6 +188,18 @@ class StudyPage extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const EmptyPage()),
+            );
+          }
+          if (text == 'SUBSET') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SubsetPage()),
+            );
+          }
+          if (text == 'UNIVERSAL SET') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const UniversalSetPage()),
             );
           }
         },

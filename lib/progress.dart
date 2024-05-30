@@ -62,7 +62,7 @@ class ProgressPage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             LinearProgressIndicator(
-              value: 0.00, // Example progress value, adjust as needed
+              value: 50.00, // Example progress value, adjust as needed
               backgroundColor: Colors.white.withOpacity(0.5),
               valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
             ),

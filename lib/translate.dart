@@ -44,21 +44,21 @@ class TranslatePage extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Container(
-                  color: Colors.grey[300],
-                  height: 200,
-                  child: Center(
-                    child: Icon(
-                      Icons.play_circle_outline,
-                      color: Colors.red,
-                      size: 100,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
+              // Container(
+              //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              //   child: Container(
+              //     color: Colors.grey[300],
+              //     height: 200,
+              //     child: Center(
+              //       child: Icon(
+              //         Icons.play_circle_outline,
+              //         color: Colors.red,
+              //         size: 100,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              //const SizedBox(height: 20),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
                 child: Text(
@@ -70,7 +70,7 @@ class TranslatePage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              //const SizedBox(height: 20),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
