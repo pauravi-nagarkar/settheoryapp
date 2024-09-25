@@ -86,6 +86,10 @@ flutter:
     - assets/images/set2.jpg
     - assets/images/unionlogo.jpg
     - assets/images/B1.png
+    - assets/images/disjointset.png
+    - assets/images/dset1.png
+    - assets/images/dset2.png
+    - assets/images/equalset.png
 
 
 

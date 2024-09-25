@@ -102,6 +102,7 @@ import 'set.dart';  // Import the SetPage widget
 import 'empty.dart';
 import 'subset.dart';
 import 'universalset.dart';
+import 'disjointset.dart';
 
 class StudyPage extends StatelessWidget {
   const StudyPage({super.key});
@@ -200,6 +201,12 @@ class StudyPage extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const UniversalSetPage()),
+            );
+          }
+          if (text == 'DISJOINT SET') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const DisjointSetPage()),
             );
           }
         },
