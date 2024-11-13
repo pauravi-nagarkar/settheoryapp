@@ -1,200 +1,218 @@
 import 'package:flutter/material.dart';
 
-class DisjointSetGame extends StatefulWidget {
-  const DisjointSetGame({super.key});
+void main() {
+  runApp(const DisjointSetGame());
+}
+
+class DisjointSetGame extends StatelessWidget {
+  const DisjointSetGame({Key? key}) : super(key: key);
 
   @override
-  _DisjointSetGameState createState() => _DisjointSetGameState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Disjoint Set Game',
+      theme: ThemeData(
+        primaryColor: Colors.lightBlueAccent,
+        colorScheme: ColorScheme.light(primary: Colors.lightGreen),
+      ),
+      home: GameScreen(),
+    );
+  }
 }
 
-class Example {
-  final List<String> setA;
-  final List<String> setB;
-  final List<String> commonElements;
-
-  Example(this.setA, this.setB, this.commonElements);
+class GameScreen extends StatefulWidget {
+  @override
+  _GameScreenState createState() => _GameScreenState();
 }
 
-class _DisjointSetGameState extends State<DisjointSetGame> {
-  final List<Example> examples = [
-    Example(['1', '2', '3'], ['4', '5', '6'], []),
-    Example(['A', 'B', 'C'], ['B', 'D', 'E'], ['B']), // common element
-    Example(['X', 'Y'], ['Z', 'X'], ['X']), // common element
+class _GameScreenState extends State<GameScreen> {
+  final List<SetPair> setPairs = [
+    SetPair('assets/images/ds1.png', 'assets/images/ds2.png', false), // Disjoint
+    SetPair('assets/images/ds3.png', 'assets/images/ds4.png', true), // Not disjoint
+    SetPair('assets/images/ds5.png', 'assets/images/ds6.png', true), // Disjoint
+    SetPair('assets/images/ds7.png', 'assets/images/ds8.png', false), // Not disjoint
+    SetPair('assets/images/ds9.png', 'assets/images/ds10.png', true), // Disjoint
+    // Add more set pairs as needed
   ];
 
   int currentIndex = 0;
-  List<String> setA = [];
-  List<String> setB = [];
-  List<String> commonElements = [];
-  List<String> disjointSetA = [];
-  List<String> disjointSetB = [];
+  String feedback = '';
 
-  @override
-  void initState() {
-    super.initState();
-    _loadCurrentExample();
+  void checkAnswer(bool isDisjoint) {
+    if (setPairs[currentIndex].isDisjoint == isDisjoint) {
+      setState(() {
+        feedback = 'Correct!';
+      });
+    } else {
+      setState(() {
+        feedback = 'Incorrect! Try Again.';
+      });
+    }
   }
 
-  void _loadCurrentExample() {
-    final currentExample = examples[currentIndex];
-    setA = List.from(currentExample.setA);
-    setB = List.from(currentExample.setB);
-    commonElements = List.from(currentExample.commonElements);
-    disjointSetA = List.from(setA);
-    disjointSetB = List.from(setB);
+  void _showFinalScore() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Game Over!'),
+          content: const Text('You have completed all matches!'),
+          actions: [
+            TextButton(
+              child: const Text('Play Again'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                setState(() {
+                  currentIndex = 0;
+                  feedback = '';
+                });
+              },
+            ),
+            TextButton(
+              child: const Text('Back to Home'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                // Add logic to go back to home if applicable
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
-  void removeCommonElement(String element) {
-    setState(() {
-      disjointSetA.remove(element);
-      disjointSetB.remove(element);
-      commonElements.remove(element);
-    });
-  }
-
-  bool checkDisjoint() {
-    return commonElements.isEmpty;
+  void goToNextQuestion() {
+    if (currentIndex < setPairs.length - 1) {
+      setState(() {
+        currentIndex++;
+        feedback = ''; // Reset feedback for the next question
+      });
+    } else {
+      _showFinalScore();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Disjoint Set Game"),
-        backgroundColor: Colors.blueAccent,
+        title: const Text('Disjoint Set Game'),
+        centerTitle: true,
+        backgroundColor: Colors.lightBlueAccent,
       ),
-      body: Column(
-        children: [
-          const SizedBox(height: 20),
-          Text(
-            "Set A: {${disjointSetA.join(', ')}}",
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            "Set B: {${disjointSetB.join(', ')}}",
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            "Common Elements: {${commonElements.join(', ')}}",
-            style: const TextStyle(fontSize: 24, color: Colors.red, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 20),
-          Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                  child: _buildElementsColumn(disjointSetA, 'Set A'),
-                ),
-                Expanded(
-                  child: _buildElementsColumn(disjointSetB, 'Set B'),
-                ),
-              ],
-            ),
-          ),
-          if (checkDisjoint())
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    if (currentIndex < examples.length - 1) {
-                      currentIndex++;
-                      _loadCurrentExample();
-                    } else {
-                      _showCompletionDialog();
-                    }
-                  });
-                },
-                child: const Text("Next"),
-              ),
-            ),
-        ],
+      backgroundColor: Color.fromARGB(255, 166, 209, 244), // Light cyan background color
+      body: Container(
+        color: const Color(0xFFa6e4f4),
+        child: Center(
+          child: currentIndex < setPairs.length
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Column(
+                            children: [
+                              const Text(
+                                'Set 1',
+                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              _buildDraggableImage(setPairs[currentIndex].imageA),
+                            ],
+                          ),
+                          const SizedBox(height: 20), // Space between images
+                          Column(
+                            children: [
+                              const Text(
+                                'Set 2',
+                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              _buildDraggableImage(setPairs[currentIndex].imageB),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    const Text(
+                      'Are these sets disjoint?',
+                      style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.deepPurple),
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildAnswerButton('Yes', true, Colors.green), // Green for Yes
+                        const SizedBox(width: 20),
+                        _buildAnswerButton('No', false, Colors.red), // Red for No
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      feedback,
+                      style: const TextStyle(fontSize: 20, color: Colors.red),
+                    ),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: goToNextQuestion,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.yellow, // Change button color
+                        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                        textStyle: const TextStyle(fontSize: 20),
+                      ),
+                      child: const Text('Next'),
+                    ),
+                  ],
+                )
+              : const Center(child: CircularProgressIndicator()),
+        ),
       ),
     );
   }
 
-  Widget _buildElementsColumn(List<String> set, String title) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 16),
-        ...set.map((element) {
-          return Draggable<String>(
-            data: element,
-            feedback: _buildDraggableItem(element),
-            childWhenDragging: _buildDraggableItem(element, dragging: true),
-            child: _buildDraggableItem(element),
-          );
-        }).toList(),
-        const SizedBox(height: 20),
-        const Text(
-          "Drag common elements to the trash bin",
-          style: TextStyle(fontSize: 16, color: Colors.grey),
-        ),
-        DragTarget<String>(
-          onAccept: (data) {
-            removeCommonElement(data);
-          },
-          builder: (context, candidateData, rejectedData) {
-            return Container(
-              height: 80,
-              width: 80,
-              color: Colors.redAccent,
-              child: const Icon(
-                Icons.delete,
-                size: 40,
-                color: Colors.white,
-              ),
-            );
-          },
-        ),
-      ],
+  Widget _buildAnswerButton(String title, bool isDisjoint, Color buttonColor) {
+    return ElevatedButton(
+      onPressed: () {
+        checkAnswer(isDisjoint);
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: buttonColor, // Use the passed button color
+        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+        textStyle: const TextStyle(fontSize: 20),
+      ),
+      child: Text(title),
     );
   }
 
-  Widget _buildDraggableItem(String element, {bool dragging = false}) {
+  Widget _buildDraggableImage(String imagePath) {
     return Container(
-      margin: const EdgeInsets.all(8.0),
-      padding: const EdgeInsets.all(16.0),
+      width: 500, // Increased size for better visibility
+      height: 200,
       decoration: BoxDecoration(
-        color: dragging ? Colors.grey : Colors.blue,
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      child: Text(
-        element,
-        style: const TextStyle(
-          fontSize: 24,
-          color: Colors.white,
-        ),
-      ),
-    );
-  }
-
-  void _showCompletionDialog() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text("Congratulations!"),
-        content: const Text("You have completed all the examples."),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              setState(() {
-                currentIndex = 0;
-                _loadCurrentExample();
-              });
-            },
-            child: const Text("Restart"),
+        borderRadius: BorderRadius.circular(12.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.blueAccent.withOpacity(0.5),
+            blurRadius: 10.0,
+            spreadRadius: 1.0,
+            offset: const Offset(2.0, 2.0),
           ),
         ],
       ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12.0),
+        child: Image.asset(imagePath, fit: BoxFit.cover),
+      ),
     );
   }
+}
+
+class SetPair {
+  final String imageA; // Image for Set A
+  final String imageB; // Image for Set B
+  final bool isDisjoint; // Whether the sets are disjoint or not
+
+  SetPair(this.imageA, this.imageB, this.isDisjoint);
 }

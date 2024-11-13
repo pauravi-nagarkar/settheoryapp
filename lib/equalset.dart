@@ -5,7 +5,7 @@ import 'solve.dart';
 import 'translate.dart';
 import 'example.dart';
 import 'quiz.dart';
-import 'equalsetgame.dart';
+//import 'equalsetgame.dart';
 import 'translateequal.dart';
 
 class EqualSetPage extends StatelessWidget {
@@ -108,8 +108,8 @@ class EqualSetPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _buildCustomButton(context, 'GAME', 'assets/images/example.png', const EqualSetGamePage()),
-                  _buildCustomButton(context, 'TRANSLATE', 'assets/images/translate.png', const TranslateEqualPage()),
+                //  _buildCustomButton(context, 'GAME', 'assets/images/example.png', const EqualSetGamePage()),
+                //  _buildCustomButton(context, 'TRANSLATE', 'assets/images/translate.png', const TranslateEqualPage()),
                   _buildCustomButtonWithImage(context, 'PRACTICE', 'assets/images/solveicon.png', const QuizPage()),
                 ],
               ),

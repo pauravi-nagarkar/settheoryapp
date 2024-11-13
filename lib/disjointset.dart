@@ -96,16 +96,16 @@ class DisjointSetPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 40),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _buildCustomButton(context, 'GAME',
-                      'assets/images/example.png', const DisjointSetGame()),
-                  _buildCustomButton(context, 'TRANSLATE',
-                      'assets/images/translate.png', const TranslateDisjointSetPage()),
-                  _buildCustomButtonWithImage(context, 'PRACTICE',
-                      'assets/images/solveicon.png', const QuizPage()),
-                ],
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                     _buildCustomButton(context, 'GAME', const DisjointSetGame()),
+                     _buildCustomButton(context, 'TRANSLATE', const TranslateDisjointSetPage()),
+                     _buildCustomButton(context, 'PRACTICE', const QuizPage()),
+                  ],
+                ),
               ),
             ],
           ),
@@ -114,9 +114,9 @@ class DisjointSetPage extends StatelessWidget {
     );
   }
 
-  Widget _buildCustomButton(BuildContext context, String title, String imagePath, Widget page) {
+  Widget _buildCustomButton(BuildContext context, String title, Widget page) {
     return Container(
-      width: 300, // Consistent width with image button
+      width: 250,
       height: 100,
       decoration: BoxDecoration(
         color: Colors.yellow[700],
@@ -133,67 +133,15 @@ class DisjointSetPage extends StatelessWidget {
             MaterialPageRoute(builder: (context) => page),
           );
         },
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              imagePath,
-              width: 50, // Add image here for consistency
-              height: 50,
+        child: Center(
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
             ),
-            const SizedBox(width: 10),
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildCustomButtonWithImage(
-      BuildContext context, String title, String imagePath, Widget page) {
-    return Container(
-      width: 300,
-      height: 100,
-      decoration: BoxDecoration(
-        color: Colors.yellow[700],
-        borderRadius: BorderRadius.circular(50),
-      ),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-        ),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => page),
-          );
-        },
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              imagePath,
-              width: 100,
-              height: 100,
-            ),
-            const SizedBox(width: 10),
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

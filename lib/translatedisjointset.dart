@@ -96,7 +96,7 @@ class TranslateDisjointSetPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _buildCustomButton(context, 'GAME', 'assets/images/example.png', const DisjointSetGamePage()),
+                  _buildCustomButton(context, 'GAME', 'assets/images/example.png', const DisjointSetGame()),
                   _buildCustomButton(context, 'TRANSLATE', 'assets/images/translate.png', const DisjointSetPage()),
                   _buildCustomButtonWithImage(context, 'PRACTICE', 'assets/images/solveicon.png', const QuizPage()),
                 ],
