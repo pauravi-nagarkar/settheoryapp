@@ -32,6 +32,9 @@ dependencies:
   firebase_core: ^2.24.2
   flutter:
     sdk: flutter
+  speech_to_text: ^6.3.0  # For speech recognition (convert speech to text)
+  flutter_tts: ^3.3.0     # For text-to-speech (convert text to speech)
+  google_ml_kit: ^0.7.3
   lottie: ^3.1.2
   cupertino_icons: ^1.0.6
   audioplayers: ^6.0.0
@@ -90,24 +93,9 @@ flutter:
     - assets/images/dset1.png
     - assets/images/dset2.png
     - assets/images/equalset.png
-    - assets/images/ds1.png
-    - assets/images/ds2.png
-    - assets/images/ds3.png
-    - assets/images/ds4.png
-    - assets/images/ds5.png
-    - assets/images/ds6.png
-    - assets/images/ds7.png
-    - assets/images/ds8.png
-    - assets/images/ds9.png
-    - assets/images/ds10.png
-    - assets/images/ds11.png
-    - assets/images/ds12.png
-    - assets/images/ds13.png
-    - assets/images/ds14.png
-    - assets/images/ds15.png
-    - assets/images/ds16.png
-    - assets/images/ds17.png
-    - assets/images/ds18.png
+
+
+
 
     
 

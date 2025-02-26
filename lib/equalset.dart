@@ -4,9 +4,6 @@ import 'theory.dart';
 import 'solve.dart';
 import 'translate.dart';
 import 'example.dart';
-import 'quiz.dart';
-//import 'equalsetgame.dart';
-import 'translateequal.dart';
 
 class EqualSetPage extends StatelessWidget {
   const EqualSetPage({super.key});
@@ -15,20 +12,20 @@ class EqualSetPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("EQUAL SET"),
-        backgroundColor: const Color(0xFF8dd0f0), // Light blue background color
+        title: const Text("EQUAL SETS"),
+        backgroundColor: const Color(0xFF8dd0f0),
       ),
       body: Container(
-        color: const Color(0xFF8dd0f0), // Blue background color
+        color: const Color(0xFF8dd0f0),
         child: SingleChildScrollView(
           child: Column(
             children: [
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 14.0),
                 child: Text(
-                  "WHAT IS AN EQUAL SET?",
+                  "EQUAL SETS",
                   style: TextStyle(
-                    fontSize: 42,
+                    fontSize: 82,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -36,10 +33,10 @@ class EqualSetPage extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
                 child: Text(
-                  "Two sets A and B are said to be equal if they contain exactly the same elements. In other words, every element of A is also an element of B, and every element of B is also an element of A. For example:",
+                  "Two sets are equal if they contain exactly the same elements, regardless of order or repetition.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 42,
                     color: Colors.black,
                   ),
                 ),
@@ -49,71 +46,58 @@ class EqualSetPage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    _buildImageWithDescription('assets/images/set1.jpg', 'Set A:{1, 2, 3, 4}'),
+                    _buildImageWithDescription('assets/images/equal1.png', 'Set A: {1,2,3}'),
                     const SizedBox(width: 20),
-                    _buildImageWithDescription('assets/images/set2.jpg', 'Set B:{4, 3, 2, 1}'),
+                    _buildImageWithDescription('assets/images/equal2.png', 'Set B: {3,2,1}'),
                   ],
                 ),
               ),
               const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
+                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
                 child: Text(
-                  "If Set A = {1, 2, 3, 4} and Set B = {4, 3, 2, 1}, then A and B are equal sets because they contain the same elements.",
+                  "These sets are equal because they contain the same elements",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 42,
                     color: Colors.black,
                   ),
                 ),
               ),
               const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _buildImageWithDescriptionEqual('assets/images/equalset.jpg', 'Equal Set Example'),
-                ],
-              ),
-              const SizedBox(height: 10),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-                child: Text(
-                  "In equal sets, the order of elements does not matter, only the content of the sets matters.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.black,
-                  ),
+                child: Column(
+                  children: [
+                    Text(
+                      "Formal Definition:",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 38,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    Text(
+                      "Set A = Set B if and only if\n∀x (x ∈ A ⇨ x ∈ B) and\n∀x (x ∈ B ⇨ x ∈ A)",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 34,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 10),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-                child: Text(
-                  "The symbol used for equality of sets is 'A = B'.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _buildImageWithDescriptionEqual('assets/images/equallogo.jpg', 'Equal Set Symbol'),
+                  _buildCustomButton(context, 'EXAMPLE', 'assets/images/example.png', const EqualExamplePage()),
+                  _buildCustomButton(context, 'TRANSLATE', 'assets/images/translate.png', const TranslatePage()),
+                  _buildCustomButtonWithImage(context, 'PRACTICE', 'assets/images/solveicon.png', const EqualQuizPage()),
                 ],
               ),
-              const SizedBox(height: 40),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                //  _buildCustomButton(context, 'GAME', 'assets/images/example.png', const EqualSetGamePage()),
-                //  _buildCustomButton(context, 'TRANSLATE', 'assets/images/translate.png', const TranslateEqualPage()),
-                  _buildCustomButtonWithImage(context, 'PRACTICE', 'assets/images/solveicon.png', const QuizPage()),
-                ],
-              ),
-              const SizedBox(height: 0),
             ],
           ),
         ),
@@ -204,35 +188,15 @@ class EqualSetPage extends StatelessWidget {
       children: [
         Image.asset(
           imagePath,
-          width: 249,
-          height: 92,
+          width: 250,
+          height: 250,
           fit: BoxFit.cover,
         ),
         const SizedBox(height: 10),
         Text(
           description,
           style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildImageWithDescriptionEqual(String imagePath, String description) {
-    return Column(
-      children: [
-        Image.asset(
-          imagePath,
-          width: 250,
-          height: 182,
-        ),
-        const SizedBox(height: 20),
-        Text(
-          description,
-          style: const TextStyle(
-            fontSize: 16,
+            fontSize: 24,
             fontWeight: FontWeight.bold,
           ),
         ),
