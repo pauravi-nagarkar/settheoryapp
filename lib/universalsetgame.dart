@@ -186,18 +186,22 @@ class UniversalSetGamePage extends StatefulWidget {
 }
 
 class Example {
+  final List<String> egA;
+  final List<String> egB;
+  final List<String> set;
+  final List<String> setName;
   final List<String> setA;
   final List<String> setP;
   final List<String> correctUniversalSet;
 
-  Example(this.setA, this.setP, this.correctUniversalSet);
+  Example(this.egA, this.egB, this.set, this.setName, this.setA, this.setP, this.correctUniversalSet);
 }
 
 class _UniversalSetGamePageState extends State<UniversalSetGamePage> {
   final List<Example> examples = [
-    Example(['A', 'B', 'C', 'D'], ['X', 'Y', 'Z'], ['A', 'B', 'C', 'D', 'X', 'Y', 'Z']),
-    Example(['1', '2', '3'], ['3', '4', '5'], ['1', '2', '3', '4', '5']),
-    Example(['P', 'Q'], ['R', 'S', 'T'], ['P', 'Q', 'R', 'S', 'T']),
+    Example(['A', 'B', 'C', 'D'], ['P', 'Q', 'R'], ['Universal Set'], ['A', 'B', 'C', 'D', 'P', 'Q', 'R'], ['(Intersección)', '(Subconjunto de)', '(Unión)'], ['∪', '∩', '⊆'], ['∪', '(Unión)']),
+    Example(['1', '2', '3'], ['3', '4', '5'], ['1', '2', '3', '4', '5'], ['Intersection Set'], ['(Intersección)', '(Subconjunto de)', '(Unión)'], ['∪', '∩', '⊆'], ['∩', '(Intersección)']),
+    Example(['P', 'Q', 'R', 'S'], ['R', 'S'], ['P', 'Q'], ['Set Difference'], ['(Menos)', '(Subconjunto de)', '(Unión)'], ['∪', '-', '⊆'], ['-', '(Menos)']),
   ];
 
   int currentIndex = 0;
@@ -228,17 +232,21 @@ class _UniversalSetGamePageState extends State<UniversalSetGamePage> {
               child: Column(
                 children: [
                   Text(
-                    "If Set A = {${currentExample.setA.join(', ')}}",
+                    "If Set A = {${currentExample.egA.join(', ')}}",
                     style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "if Set P = {${currentExample.setP.join(', ')}}",
+                    "if Set P = {${currentExample.egB.join(', ')}}",
                     style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    "What is Universal Set (A ∪ P) ?= {${universalSet.join(', ')}}",
+                    "Then ${currentExample.setName.join(', ')} Z = {${currentExample.set.join(', ')}} is written as ?",
                     style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "A ${universalSet.join(' ')} P",
+                    style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.green,),
                   ),
                 ],
               ),
